@@ -8,11 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="comment")
+@Table(name="MOVIECOMMENTS")
 public class Comment {
 	
 //	- commentId
@@ -21,22 +22,22 @@ public class Comment {
 //	- comment
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_id_gen")
-	@SequenceGenerator(name="commment_id_gen", sequenceName = "comment_id_seq", allocationSize = 1)
+	@SequenceGenerator(name="comment_id_gen", sequenceName = "comment_id_seq", allocationSize = 1)
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="commentid")
+	@Column(name="COMMENTID")
 	private Integer commentid;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
+	@JoinColumn(name="USERID")
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="movieid")
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="MOVIEID")
 	private Movie movie;
 	
-	@Column(name="comment")
-	private String comment;
+	@Column(name="DESCRIPTION")
+	private String commentText;
 
 	public Comment() {
 		super();
@@ -67,17 +68,17 @@ public class Comment {
 		this.movie = movie;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getCommentText() {
+		return commentText;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
 	}
 
 	@Override
 	public String toString() {
-		return "Comment [commentid=" + commentid + ", user=" + user + ", movie=" + movie + ", comment=" + comment + "]";
+		return "Comment [commentid=" + commentid + ", user=" + user + ", movie=" + movie + ", commentText=" + commentText + "]";
 	}
 	
 	

@@ -29,26 +29,27 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-	@GetMapping("/find")
-	public ResponseEntity<?> findCommentByMovieId(@PathVariable Integer movieid, @PathVariable Integer id){
-		System.out.println("CommentController->findComment");
-		commentService.findCommentByMovieIdAndUserId(movieid,id);
-		return new ResponseEntity<> (commentService,HttpStatus.OK);
-			
-	}
+//	@GetMapping("/find")
+//	public ResponseEntity<?> findCommentByMovieId(@PathVariable Integer movieid, @PathVariable Integer id){
+//		System.out.println("CommentController->findComment");
+//		commentService.findCommentByMovieIdAndUserId(movieid,id);
+//		return new ResponseEntity<> (commentService,HttpStatus.OK);
+//			
+//	}
 	
-	@GetMapping("/create")
+	@PostMapping("/create")
 	public ResponseEntity<?> createComment(@RequestBody Comment comment){
 		System.out.println("CommentController->createComment");
-		commentService.save(comment);
+		System.out.println("COMMENT: " + comment);
+		commentService.createComment(comment);
 		return new ResponseEntity<> (HttpStatus.CREATED);
 		
 	}
 	
-	@DeleteMapping("/{commentid}")
-	public void delete(@PathVariable("commentid") Integer commentid) {
-		commentService.delete(commentid);
-	}
+//	@DeleteMapping("/{commentid}")
+//	public void delete(@PathVariable("commentid") Integer commentid) {
+//		commentService.delete(commentid);
+//	}
 	
 	
 }

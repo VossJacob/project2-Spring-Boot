@@ -10,11 +10,11 @@ public interface CommentService {
 	
 	//Comment findOne (Comment comment);
 	
-	void save (Comment comment);
+	void createComment (Comment comment);
 	
-	void delete (Integer commentid);
+//	void delete (Integer commentid);
 
-	Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
+//	Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
 	
 
 }

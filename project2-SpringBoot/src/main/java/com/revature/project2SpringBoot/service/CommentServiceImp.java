@@ -14,24 +14,23 @@ public class CommentServiceImp implements CommentService {
 	@Autowired
 	private CommentDAO commentDAO;
 	
-	@Transactional
-	public Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id) {
-		Comment commentResult = commentDAO.findCommentByMovieIdAndUserId(movieid, id);
-		
-		return commentResult;
-		
-	}
+//	@Transactional
+//	public Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id) {
+//		Comment commentResult = commentDAO.findCommentByMovieIdAndUserId(movieid, id);
+//		
+//		return commentResult;
+//		
+//	}
 	
 	
-	public void save (Comment comment) {
+	public void createComment (Comment comment) {
 		commentDAO.save(comment);
-		
 	}
 	
-	@Transactional
-	public void delete(Integer commentid) {
-		commentDAO.delete(commentid);
-		
-	}
+//	@Transactional
+//	public void delete(Integer commentid) {
+//		commentDAO.delete(commentid);
+//		
+//	}
 
 }

@@ -16,15 +16,14 @@ public interface CommentDAO extends JpaRepository<Comment,Integer>{
 //	-save
 //	-delete
 	
-	Comment save(Comment comment);
 	
 	
-	@Query("select c from Comment c where c.movieid = :movieid and c.id = :id")
-	Comment findCommentByMovieIdAndUserId(@Param("movieid") Integer movieid, @Param("userid") Integer id);
+//	@Query("select c from MOVIECOMMENTS c where c.MOVIEID = :movieid and c.ID = :id")
+//	Comment findCommentByMovieIdAndUserId(@Param("movieid") Integer movieid, @Param("userid") Integer id);
 
-	@Modifying
-	@Query("delete from Comment where commentid = :commentid")
-	void delete(@Param("commentid") Integer commentid);
+//	@Modifying
+//	@Query("delete from MOVIECOMMENTS where commentid = :commentid")
+//	void delete(@Param("commentid") Integer commentid);
 	
 
 }
