@@ -30,8 +30,8 @@ public class Movie {
 	@SequenceGenerator(name="movie_id_gen", sequenceName = "movie_id_seq", allocationSize = 1)
 	@Column(name="movieid")
 	private Integer movieid;
-//	
-//	@ManyToOne(fetch = FetchType.EAGER)
+
+	//	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumn(name="userid")
 	@ManyToMany
 	@JoinTable(

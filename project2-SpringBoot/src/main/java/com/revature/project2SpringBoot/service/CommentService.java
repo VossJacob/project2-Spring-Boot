@@ -15,7 +15,9 @@ public interface CommentService {
 	
 //	void delete (Integer commentid);
 
-//	Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
+	void deleteById (Integer commentid);
+
+	//Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
 	
 
 }
