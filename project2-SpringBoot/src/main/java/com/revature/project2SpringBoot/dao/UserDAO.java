@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.revature.project2SpringBoot.model.Comment;
+import com.revature.project2SpringBoot.model.Movie;
 import com.revature.project2SpringBoot.model.User;
 
 public interface UserDAO extends JpaRepository<User,Integer> {
@@ -23,4 +24,11 @@ public interface UserDAO extends JpaRepository<User,Integer> {
 	
 	@Query("SELECT c FROM Comment c WHERE c.userid = :userid")
 	List<Comment> getCommentsByUserId(@Param("userid") Integer userid);
+	
+	@Query("SELECT m FROM Movie m WHERE m.userid = :userid and m.favorited = 1")
+	List<Movie> getFavMovieByUserId(@Param("userid") Integer userid);
+
+	
+	@Query("SELECT m FROM Movie m WHERE m.userid = :userid and m.watched = 1")
+	List<Movie> getWatchedMoviesByUserId(Integer userid);
 }

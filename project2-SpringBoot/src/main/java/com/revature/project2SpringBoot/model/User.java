@@ -65,9 +65,9 @@ public class User {
 	// this user
 	@ManyToMany
 	@JoinTable(
-			name="Comment",
-			joinColumns=@JoinColumn(name="user"),
-			inverseJoinColumns = @JoinColumn(name="movie")
+			name="MOVIECOMMENTS",
+			joinColumns=@JoinColumn(name="userid"),
+			inverseJoinColumns = @JoinColumn(name="movieid")
 			)
 	private List<Movie> movies;
 

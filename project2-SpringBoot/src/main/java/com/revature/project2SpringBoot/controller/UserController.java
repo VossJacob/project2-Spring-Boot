@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.project2SpringBoot.model.Comment;
+import com.revature.project2SpringBoot.model.Movie;
 import com.revature.project2SpringBoot.model.User;
 import com.revature.project2SpringBoot.service.UserService;
 @CrossOrigin
@@ -53,8 +54,20 @@ public class UserController {
 		userService.update(user);
 	}
 
-	@GetMapping("/{commentId}")
-	public List<Comment> getComments(@PathVariable("commentId") Integer id){
+	@GetMapping("/comment/{userid}")
+	public List<Comment> getComments(@PathVariable("userid") Integer id){
 		return userService.getCommentsByUserId(id);
+	}
+	
+	@GetMapping("/favMovie/{userid}")
+	public List<Movie> getFavMovies(@PathVariable("userid") Integer userid){
+		
+		return userService.getFavMoviesByUserId(userid);
+	}
+	
+	@GetMapping("/watchedMovie/{userid}")
+	public List<Movie> getwatchedMovies(@PathVariable("userid") Integer userid){
+		
+		return userService.getWatchedMoviesByUserId(userid);
 	}
 }

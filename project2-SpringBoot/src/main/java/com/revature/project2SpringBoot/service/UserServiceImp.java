@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.project2SpringBoot.dao.UserDAO;
 import com.revature.project2SpringBoot.model.Comment;
+import com.revature.project2SpringBoot.model.Movie;
 import com.revature.project2SpringBoot.model.User;
 
 @Service
@@ -36,6 +37,18 @@ public class UserServiceImp implements UserService {
 	public void update(User user) {
 		userDAO.save(user);
 		
+	}
+
+
+	public List<Movie> getFavMoviesByUserId(Integer userid) {
+
+		return userDAO.getFavMovieByUserId(userid);
+	}
+
+
+	public List<Movie> getWatchedMoviesByUserId(Integer userid) {
+	
+		return userDAO.getWatchedMoviesByUserId(userid);
 	}
 
 }

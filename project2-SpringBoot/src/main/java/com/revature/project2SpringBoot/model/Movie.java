@@ -26,8 +26,8 @@ public class Movie {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_id_gen")
-	@SequenceGenerator(name="movie_id_gen", sequenceName = "movie_id_seq", allocationSize = 1)
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_id_gen")
+	//@SequenceGenerator(name="movie_id_gen", sequenceName = "movie_id_seq", allocationSize = 1)
 	@Column(name="movieid")
 	private Integer movieid;
 
@@ -35,17 +35,20 @@ public class Movie {
 //	@JoinColumn(name="userid")
 	@ManyToMany
 	@JoinTable(
-			name="Comment",
-			joinColumns=@JoinColumn(name="movie"),
-			inverseJoinColumns = @JoinColumn(name="user")
+			name="MOVIECOMMENTS",
+			joinColumns=@JoinColumn(name="movieid"),
+			inverseJoinColumns = @JoinColumn(name="userid")
 			)
 	private List<User> users;
+
+	@Column(name="userid")
+	private Integer userid;
 	
 	@Column(name="genre")
 	private String genre;
 	
 	@Column(name="favorited")
-	private Integer favorite;
+	private Integer favorited;
 	
 	@Column(name="watched")
 	private Integer watched;
@@ -55,6 +58,14 @@ public class Movie {
 
 	public Movie() {
 		super();
+	}
+	
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 	public Integer getMovieid() {
@@ -81,12 +92,12 @@ public class Movie {
 		this.genre = genre;
 	}
 
-	public Integer getFavorite() {
-		return favorite;
+	public Integer getFavorited() {
+		return favorited;
 	}
 
-	public void setFavorite(Integer favorite) {
-		this.favorite = favorite;
+	public void setFavorited(Integer favorite) {
+		this.favorited = favorite;
 	}
 
 	public Integer getWatched() {
@@ -107,7 +118,7 @@ public class Movie {
 
 	@Override
 	public String toString() {
-		return "Movie [movieid=" + movieid + ", user=" + users + ", genre=" + genre + ", favorite=" + favorite
+		return "Movie [movieid=" + movieid + ", userid=" + userid + ", genre=" + genre + ", favorite=" + favorited
 				+ ", watched=" + watched + "]";
 	}
 
