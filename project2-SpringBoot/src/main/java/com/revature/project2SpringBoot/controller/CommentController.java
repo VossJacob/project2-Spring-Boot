@@ -29,9 +29,9 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
-//	@GetMapping("/find")
+//	@GetMapping("/{movieid}/{id}")
 //	public ResponseEntity<?> findCommentByMovieId(@PathVariable Integer movieid, @PathVariable Integer id){
-//		System.out.println("CommentController->findComment");
+//		System.out.println("CommfentController->findComment");
 //		commentService.findCommentByMovieIdAndUserId(movieid,id);
 //		return new ResponseEntity<> (commentService,HttpStatus.OK);
 //			
@@ -46,10 +46,11 @@ public class CommentController {
 		
 	}
 	
-//	@DeleteMapping("/{commentid}")
-//	public void delete(@PathVariable("commentid") Integer commentid) {
-//		commentService.delete(commentid);
-//	}
+	@DeleteMapping("/{commentid}")
+	public void delete(@PathVariable("commentid") Integer commentid) {
+		System.out.println(commentid);
+		commentService.deleteById(commentid);
+	}
 	
 	
 }

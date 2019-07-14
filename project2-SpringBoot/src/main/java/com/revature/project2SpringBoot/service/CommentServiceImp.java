@@ -27,10 +27,11 @@ public class CommentServiceImp implements CommentService {
 		commentDAO.save(comment);
 	}
 	
-//	@Transactional
-//	public void delete(Integer commentid) {
-//		commentDAO.delete(commentid);
-//		
-//	}
+	@Transactional
+	public void deleteById(Integer commentid) {
+		System.out.println("deleteById: " +commentid);
+		commentDAO.deleteById(commentid);
+		
+	}
 
 }

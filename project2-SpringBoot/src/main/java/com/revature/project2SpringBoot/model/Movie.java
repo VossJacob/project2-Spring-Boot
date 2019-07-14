@@ -34,13 +34,13 @@ public class Movie {
 	private Integer movieid;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
+	@JoinColumn(name="userid")
 	private User user;
 	
 	@Column(name="genre")
 	private String genre;
 	
-	@Column(name="favorite")
+	@Column(name="favorited")
 	private Integer favorite;
 	
 	@Column(name="watched")

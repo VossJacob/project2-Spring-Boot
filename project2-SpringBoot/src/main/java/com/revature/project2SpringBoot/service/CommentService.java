@@ -12,9 +12,9 @@ public interface CommentService {
 	
 	void createComment (Comment comment);
 	
-//	void delete (Integer commentid);
+	void deleteById (Integer commentid);
 
-//	Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
+	//Comment findCommentByMovieIdAndUserId(Integer movieid, Integer id);
 	
 
 }
