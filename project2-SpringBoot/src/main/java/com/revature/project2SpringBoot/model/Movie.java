@@ -1,5 +1,8 @@
 package com.revature.project2SpringBoot.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -43,6 +45,9 @@ public class Movie {
 	
 	@Column(name="watched")
 	private Integer watched;
+	
+	@OneToMany(mappedBy="movie")
+	private List<Comment> comments;
 
 	public Movie() {
 		super();
@@ -87,6 +92,14 @@ public class Movie {
 	public void setWatched(Integer watched) {
 		this.watched = watched;
 	}
+	
+	public List<Comment> getComments(){
+		return this.comments;
+	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public String toString() {
@@ -94,7 +107,15 @@ public class Movie {
 				+ ", watched=" + watched + "]";
 	}
 
-
+	// add a comment to be associated with a particular movie
+	public void addComment(Comment comment) {
+		if(this.comments == null) {
+			this.comments = new ArrayList<>();
+		}
+		
+		this.comments.add(comment);
+		comment.setMovie(this);
+	}
 	
 	
 	

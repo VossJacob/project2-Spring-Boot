@@ -1,15 +1,19 @@
 package com.revature.project2SpringBoot.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
 //	-id
@@ -21,38 +25,44 @@ public class User {
 //	-city
 //	-state
 //	-phoneNumber""
-	
+
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_gen")
-	@SequenceGenerator(name="user_id_gen", sequenceName = "user_id_seq", allocationSize = 1)
-	@Column(name="id")
+	@SequenceGenerator(name = "user_id_gen", sequenceName = "user_id_seq", allocationSize = 1)
+	@Column(name = "id")
 	private Integer id;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	
-	@Column(name="firstname")
+
+	@Column(name = "firstname")
 	private String firstname;
-	
-	@Column(name="lastname")
+
+	@Column(name = "lastname")
 	private String lastname;
-	
-	@Column(name="address")
+
+	@Column(name = "address")
 	private String address;
-	
-	@Column(name="city")
+
+	@Column(name = "city")
 	private String city;
-	
-	@Column(name="state")
+
+	@Column(name = "state")
 	private String state;
-	
-	@Column(name="phonenumber")
+
+	@Column(name = "phonenumber")
 	private String phonenumber;
+
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comments;
+
+	// This list contains both movies that have either been favorited or watched by this user
+	@OneToMany(mappedBy = "user")
+	private List<Movie> movies;
 
 	public User() {
 		super();
@@ -131,13 +141,46 @@ public class User {
 		this.phonenumber = phonenumber;
 	}
 
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", address=" + address + ", city=" + city + ", state=" + state
 				+ ", phonenumber=" + phonenumber + "]";
 	}
-	
-	
 
+	// Add a comment to be associated with a particular user
+	public void addComment(Comment comment) {
+		if (this.comments == null) {
+			this.comments = new ArrayList<>();
+		}
+
+		this.comments.add(comment);
+		comment.setUser(this);
+	}
+
+	// Add a movie to be associated with a particular user
+	public void addMovie(Movie movie) {
+		if (this.movies == null) {
+			this.movies = new ArrayList<>();
+		}
+
+		this.movies.add(movie);
+		movie.setUser(this);
+	}
 }
