@@ -1,5 +1,8 @@
 package com.revature.project2SpringBoot.service;
 
+import java.util.List;
+
+import com.revature.project2SpringBoot.model.Comment;
 import com.revature.project2SpringBoot.model.User;
 
 public interface UserService {
@@ -10,6 +13,7 @@ public interface UserService {
 //	- User login(Integer id)
 //	- void update(User user)
 
+	List<Comment> getCommentsByUserId(Integer id);
 	
 	void registerUser(User user);
 	

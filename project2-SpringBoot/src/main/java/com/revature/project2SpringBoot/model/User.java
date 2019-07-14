@@ -1,6 +1,5 @@
 package com.revature.project2SpringBoot.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -57,11 +58,17 @@ public class User {
 	@Column(name = "phonenumber")
 	private String phonenumber;
 
-	@OneToMany(mappedBy = "user")
-	private List<Comment> comments;
+//	@OneToMany(mappedBy = "user")
+//	private List<Comment> comments;
 
-	// This list contains both movies that have either been favorited or watched by this user
-	@OneToMany(mappedBy = "user")
+	// This list contains both movies that have either been favorited or watched by
+	// this user
+	@ManyToMany
+	@JoinTable(
+			name="Comment",
+			joinColumns=@JoinColumn(name="user"),
+			inverseJoinColumns = @JoinColumn(name="movie")
+			)
 	private List<Movie> movies;
 
 	public User() {
@@ -141,13 +148,13 @@ public class User {
 		this.phonenumber = phonenumber;
 	}
 
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
+//	public List<Comment> getComments() {
+//		return this.comments;
+//	}
+//
+//	public void setComments(List<Comment> comments) {
+//		this.comments = comments;
+//	}
 
 	public List<Movie> getMovies() {
 		return movies;
@@ -165,22 +172,22 @@ public class User {
 	}
 
 	// Add a comment to be associated with a particular user
-	public void addComment(Comment comment) {
-		if (this.comments == null) {
-			this.comments = new ArrayList<>();
-		}
-
-		this.comments.add(comment);
-		comment.setUser(this);
-	}
+//	public void addComment(Comment comment) {
+//		if (this.comments == null) {
+//			this.comments = new ArrayList<>();
+//		}
+//
+//		this.comments.add(comment);
+//		comment.setUser(this);
+//	}
 
 	// Add a movie to be associated with a particular user
-	public void addMovie(Movie movie) {
-		if (this.movies == null) {
-			this.movies = new ArrayList<>();
-		}
-
-		this.movies.add(movie);
-		movie.setUser(this);
-	}
+//	public void addMovie(Movie movie) {
+//		if (this.movies == null) {
+//			this.movies = new ArrayList<>();
+//		}
+//
+//		this.movies.add(movie);
+//		movie.setUser(this);
+//	}
 }

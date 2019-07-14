@@ -2,13 +2,9 @@ package com.revature.project2SpringBoot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,13 +24,15 @@ public class Comment {
 	private Integer commentid;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="USERID")
-	private User user;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name="USERID")
+	@Column(name="USERID")
+	private int userid;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="MOVIEID")
-	private Movie movie;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name="MOVIEID")
+	@Column(name="MOVIEID")
+	private int movieid;
 	
 	@Column(name="DESCRIPTION")
 	private String commentText;
@@ -52,20 +50,20 @@ public class Comment {
 		this.commentid = commentid;
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserId() {
+		return this.userid;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(int userid) {
+		this.userid = userid;
 	}
 
-	public Movie getMovie() {
-		return movie;
+	public int getMovieId() {
+		return this.movieid;
 	}
 
-	public void setMovie(Movie movie) {
-		this.movie = movie;
+	public void setMovieId(int movieid) {
+		this.movieid = movieid;
 	}
 
 	public String getCommentText() {
@@ -78,11 +76,6 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [commentid=" + commentid + ", user=" + user + ", movie=" + movie + ", commentText=" + commentText + "]";
-	}
-	
-	
-	
-	
-
+		return "Comment [commentid=" + commentid + ", user=" + userid + ", movie=" + movieid + ", commentText=" + commentText + "]";
+	}	
 }
