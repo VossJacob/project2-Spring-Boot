@@ -15,7 +15,7 @@ import com.sun.istack.logging.Logger;
 
 public class JavaMailUtil {
 	
-	public static void sendRegistrationMail(String recipient) throws Exception {
+	public static void sendRecoveryEmail(String recipient, String recoveryPassword) throws Exception {
 	    System.out.println("Preparing to send email");
 	    Properties properties = new Properties();//Later used in Session variable to 
 	    
@@ -36,19 +36,20 @@ public class JavaMailUtil {
 	        }
 	    });
 	    
-	    Message message = prepareMassage(session, recipient);//
+	    Message message = prepareMassage(session, recipient, recoveryPassword);//
 	    Transport.send(message);
 	    System.out.println("Message sent successfully!");
 	}
 	//prepare the session variable, the email to send FROM, and TO.
-	private static Message prepareMassage(Session session, String recipient) {
+	private static Message prepareMassage(Session session, String recipient, String recoveryPassword) {
 	    try {
 	        Message message = new MimeMessage(session);
 	        message.setFrom(new InternetAddress("smtp.gmail.com"));
 	        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 	        message.setSubject("Test Message");
 	        String test = "<h2>Hello!</h2><br>"
-	                + "Your message has been sent successfully.  .<br/><br/>"
+	                + "Your password is <b>" + recoveryPassword + "</b> <br/>"
+	                + "Please log in using your username, and the password above."	+ "<br/>"
 	                + "Thank you!<br/>";
 	        message.setContent(test, "text/html");//Allows for HTML content to be sent.
 	        return message;

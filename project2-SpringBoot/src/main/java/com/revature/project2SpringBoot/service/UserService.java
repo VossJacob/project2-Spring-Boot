@@ -28,4 +28,6 @@ public interface UserService {
 	List<Movie> getWatchedMoviesByUserId(Integer userid);
 
 	User findById(Integer id);
+	
+	void recoverPasswordByEmail(String email);
 }

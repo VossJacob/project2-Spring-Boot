@@ -13,6 +13,7 @@ import com.revature.project2SpringBoot.dao.UserDAO;
 import com.revature.project2SpringBoot.model.Comment;
 import com.revature.project2SpringBoot.model.Movie;
 import com.revature.project2SpringBoot.model.User;
+import com.revature.project2SpringBoot.util.JavaMailUtil;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -62,7 +63,16 @@ public class UserServiceImp implements UserService {
 				throw new ServiceException("User id not found");
 			}
 			return user;
+	}
+	
+	public void recoverPasswordByEmail(String email) {
+		String password = userDAO.findPasswordByEmail(email);
+		try {
+			JavaMailUtil.sendRecoveryEmail("CJPJavamail@gmail.com", password);//Who this email will be sent to.
+		}catch(Exception e) {
+			System.out.println("Email could not be sent.");
 		}
 	}
+}
 
 

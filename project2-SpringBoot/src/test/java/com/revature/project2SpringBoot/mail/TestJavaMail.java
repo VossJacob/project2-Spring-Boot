@@ -13,7 +13,7 @@ public class TestJavaMail {
 	public static void main(String[] args) {
 		//JavaMailUtil javaMail = new JavaMailUtil();
 		try {
-			JavaMailUtil.sendRegistrationMail("CJPJavamail@gmail.com");//Who this email will be sent to.
+			JavaMailUtil.sendRecoveryEmail("CJPJavamail@gmail.com", "random Password");//Who this email will be sent to.
 		}catch(Exception e) {
 			System.out.println("Email could not be sent.");
 		}
