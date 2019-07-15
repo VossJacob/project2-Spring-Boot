@@ -20,6 +20,7 @@ import com.revature.project2SpringBoot.model.Comment;
 import com.revature.project2SpringBoot.model.Movie;
 import com.revature.project2SpringBoot.model.User;
 import com.revature.project2SpringBoot.service.UserService;
+import com.revature.project2SpringBoot.util.JavaMailUtil;
 @CrossOrigin
 
 @RestController
@@ -39,6 +40,13 @@ public class UserController {
 	public ResponseEntity<?> register(@RequestBody User user){
 		System.out.println("UserController->save");
 		userService.registerUser(user);
+//		if (user != null) {
+//			try {
+//				JavaMailUtil.sendRegistrationMail("CJPJavamail@gmail.com");//Send a registration email.
+//			}catch (Exception e) {
+//				System.out.println("Unable to send email.");
+//			}
+//		}
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
