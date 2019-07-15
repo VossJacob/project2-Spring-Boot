@@ -1,6 +1,7 @@
 package com.revature.project2SpringBoot.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -31,4 +32,8 @@ public interface UserDAO extends JpaRepository<User,Integer> {
 	
 	@Query("SELECT m FROM Movie m WHERE m.userid = :userid and m.watched = 1")
 	List<Movie> getWatchedMoviesByUserId(Integer userid);
+	
+	
+	@Query("select u from User u where u.id = :id")
+	User findOne(@Param("id") Integer id);
 }

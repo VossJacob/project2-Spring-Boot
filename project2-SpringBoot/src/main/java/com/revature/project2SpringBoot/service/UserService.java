@@ -1,6 +1,7 @@
 package com.revature.project2SpringBoot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.revature.project2SpringBoot.model.Comment;
 import com.revature.project2SpringBoot.model.Movie;
@@ -25,4 +26,6 @@ public interface UserService {
 	List<Movie> getFavMoviesByUserId(Integer userid);
 
 	List<Movie> getWatchedMoviesByUserId(Integer userid);
+
+	User findById(Integer id);
 }

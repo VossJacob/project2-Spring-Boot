@@ -1,9 +1,11 @@
 package com.revature.project2SpringBoot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,4 +53,16 @@ public class UserServiceImp implements UserService {
 		return userDAO.getWatchedMoviesByUserId(userid);
 	}
 
-}
+	@Transactional
+	public User findById(Integer id) {
+		
+			User user = null;
+			user = userDAO.findOne(id);
+			if (user == null) {
+				throw new ServiceException("User id not found");
+			}
+			return user;
+		}
+	}
+
+

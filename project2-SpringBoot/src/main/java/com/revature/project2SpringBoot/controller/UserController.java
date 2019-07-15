@@ -1,6 +1,7 @@
 package com.revature.project2SpringBoot.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,13 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/{id}")
+	public ResponseEntity<?> findById(@PathVariable("id") Integer id){
+		System.out.println("UserController->findOne");
+		User resultUser = userService.findById(id);
+		return new ResponseEntity<> (resultUser, HttpStatus.OK);
+	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody User user){
 		System.out.println("UserController->login");
@@ -69,5 +77,10 @@ public class UserController {
 	public List<Movie> getwatchedMovies(@PathVariable("userid") Integer userid){
 		
 		return userService.getWatchedMoviesByUserId(userid);
+	}
+	
+	@PostMapping("recoverEmail/{email}")
+	public void getEmailById(@PathVariable("email") String email) {
+		
 	}
 }
