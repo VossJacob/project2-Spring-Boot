@@ -48,7 +48,7 @@ public class JavaMailUtil {
 	        message.setFrom(new InternetAddress("smtp.gmail.com"));
 	        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 	        message.setSubject("Test Message");
-	        String test = "<h2>Hello!</h2><br>"
+	        String test = "<h2> Hello!</h2><br>"
 	                + "Your password is <b>" + recoveryPassword + "</b> <br/>"
 	                + "Please log in using your username, and the password above."	+ "<br/>"
 	                + "Thank you!<br/>";
