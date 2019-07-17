@@ -66,9 +66,11 @@ public class UserServiceImp implements UserService {
 	}
 	
 	public void recoverPasswordByEmail(String email) {
-		String password = userDAO.findPasswordByEmail(email);
+		String password = userDAO.findPasswordByEmail(email);//Retrieve the user's password from the database.
+		System.out.println(email);
+		System.out.println(password);
 		try {
-			JavaMailUtil.sendRecoveryEmail("CJPJavamail@gmail.com", password);//Who this email will be sent to.
+			JavaMailUtil.sendRecoveryEmail(email, password);//Who this email will be sent to.
 		}catch(Exception e) {
 			System.out.println("Email could not be sent.");
 		}

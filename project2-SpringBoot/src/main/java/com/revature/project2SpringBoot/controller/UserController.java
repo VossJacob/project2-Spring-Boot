@@ -87,7 +87,7 @@ public class UserController {
 		return userService.getWatchedMoviesByUserId(userid);
 	}
 	
-	@PostMapping("/recoverPassword/{email}")
+	@GetMapping("/recoverPassword/{email}")
 	public void getEmailById(@PathVariable("email") String email) {
 		System.out.println("Sending email recovery password.");
 		userService.recoverPasswordByEmail(email);

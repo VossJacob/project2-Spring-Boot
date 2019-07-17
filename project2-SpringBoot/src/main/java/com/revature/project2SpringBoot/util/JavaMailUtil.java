@@ -15,7 +15,7 @@ import com.sun.istack.logging.Logger;
 
 public class JavaMailUtil {
 	
-	public static void sendRecoveryEmail(String recipient, String recoveryPassword) throws Exception {
+	public static void sendRecoveryEmail(String email, String recoveryPassword) throws Exception {
 	    System.out.println("Preparing to send email");
 	    Properties properties = new Properties();//Later used in Session variable to 
 	    
@@ -27,16 +27,17 @@ public class JavaMailUtil {
 	    //Specify who to send the email to.  
 	    String myAccountEmail = "CJPJavaMail@gmail.com";
 	    String password = "Orioles123";
-	    
+	    //Session session1 = Session.
 	    //Java Mail has a Session class that makes a mail session.  
 	    Session session = Session.getInstance(properties, new Authenticator(){
 	        @Override
 	        protected PasswordAuthentication getPasswordAuthentication() {
-	            return new PasswordAuthentication(myAccountEmail, password);//Callback function to get password authentication.
+	            //return new PasswordAuthentication(email, password);//Callback function to get password authentication.
+	        	return new PasswordAuthentication(myAccountEmail,password);
 	        }
 	    });
-	    
-	    Message message = prepareMassage(session, recipient, recoveryPassword);//
+//	    
+	    Message message = prepareMassage(session, myAccountEmail, recoveryPassword);//
 	    Transport.send(message);
 	    System.out.println("Message sent successfully!");
 	}
