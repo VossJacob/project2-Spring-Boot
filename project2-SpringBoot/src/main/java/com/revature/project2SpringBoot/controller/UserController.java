@@ -52,6 +52,7 @@ public class UserController {
 	
 	@PostMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable("id") Integer id){
+		
 		System.out.println("UserController->findOne");
 		User resultUser = userService.findById(id);
 		return new ResponseEntity<> (resultUser, HttpStatus.OK);
