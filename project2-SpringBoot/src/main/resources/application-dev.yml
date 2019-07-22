@@ -1,6 +1,4 @@
-spring:
-  profiles: 
-    active: 
+spring: 
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     username: admin
